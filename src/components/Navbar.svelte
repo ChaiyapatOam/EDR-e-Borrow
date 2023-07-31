@@ -1,4 +1,5 @@
 <script>
+  import { Link } from "svelte-routing";
   import cartIcon from "/svg/cart.svg";
 </script>
 
@@ -25,8 +26,8 @@
         tabIndex="0"
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
-        <li><a>Homepage</a></li>
-        <li><a>About</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/admin">Admin</Link></li>
       </ul>
     </div>
   </div>
@@ -39,10 +40,10 @@
   <div class="navbar-end">
     <!-- Cart -->
     <button class="btn btn-ghost btn-circle">
-      <div class="indicator">
+      <Link to="/cart" class="indicator">
         <img src={cartIcon} class="cart" alt="cart" />
-        <span class="badge badge-xs badge-success indicator-item" />
-      </div>
+        <span class="badge badge-xs badge-success indicator-item"> 3</span>
+      </Link>
     </button>
   </div>
 </nav>

@@ -1,22 +1,22 @@
 <script lang="ts">
-  import CategoryList from "./components/CategoryList.svelte";
+  import { Router, Link, Route } from "svelte-routing";
 
-  // import Counter from "./lib/Counter.svelte";
-
-  import Hero from "./components/Hero.svelte";
   import Navbar from "./components/Navbar.svelte";
-  import ProductList from "./components/ProductList.svelte";
-  import SearchBar from "./components/SearchBar.svelte";
+  import Home from "./pages/Home.svelte";
+  import Cart from "./pages/Cart.svelte";
+  import NotFound from "./pages/NotFound.svelte";
+  import Admin from "./pages/admin/Admin.svelte";
+  export let url = "";
 </script>
 
-<main class="font-bai-jamjuree">
-  <Navbar />
-  <Hero />
-  <SearchBar/>
-  <CategoryList/>
-  <ProductList/>
-
-</main>
+<Router {url}>
+  <main class="font-bai-jamjuree">
+    <Route path="/" component={Home} />
+    <Route path="/cart" component={Cart} />
+    <Route path="/admin" component={Admin} />
+    <Route component={NotFound} />
+  </main>
+</Router>
 
 <style>
 </style>
