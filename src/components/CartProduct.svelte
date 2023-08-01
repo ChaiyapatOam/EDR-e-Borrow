@@ -1,19 +1,15 @@
 <script lang="ts">
   import { Cart } from "@/store/cart";
-  import plusCircleIcon from "/svg/plus-circle.svg";
+  import Couter from "./Couter.svelte";
+  import trashIcon from "/svg/trash.svg";
   export let uid = "";
   export let name = "";
   export let image = "/images/snorlax-orange.png";
-  const addToCart = () => {
-    $Cart = [
-      ...$Cart,
-      {
-        uid: uid,
-        productName: name,
-        image: "",
-        itemCount: 1,
-      },
-    ];
+  const deleteProduct = () => {
+    $Cart.splice(
+      $Cart.findIndex((c) => c.uid === uid),
+      1
+    );
   };
 </script>
 
@@ -32,10 +28,10 @@
       {name}
     </h5>
     <!-- Bottom Section -->
-    <div class="flex justify-center items-center gap-4">
-      <p class="font-normal text-gray-700">คงเหลือ 3 ชิ้น</p>
-      <button on:click={() => addToCart()} class="hover:bg-gray-300">
-        <img src={plusCircleIcon} class="w-6 h-6" alt="plus icon" />
+    <div class="flex justify-center items-center gap-4 pt-4">
+      <Couter />
+      <button on:click={deleteProduct}>
+        <img src={trashIcon} class="w-6 h-6" alt="trash icon" />
       </button>
     </div>
   </div>

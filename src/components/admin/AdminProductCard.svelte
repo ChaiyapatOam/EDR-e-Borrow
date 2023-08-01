@@ -1,24 +1,14 @@
 <script lang="ts">
-  import { Cart } from "@/store/cart";
-  import plusCircleIcon from "/svg/plus-circle.svg";
+  import editIcon from "/svg/edit.svg";
   export let uid = "";
   export let name = "";
   export let image = "/images/snorlax-orange.png";
-  const addToCart = () => {
-    $Cart = [
-      ...$Cart,
-      {
-        uid: uid,
-        productName: name,
-        image: "",
-        itemCount: 1,
-      },
-    ];
-  };
+
+  const editProduct = () => {};
 </script>
 
 <div
-  class="flex flex-row items-center justify-center gap-x-12 bg-white border border-gray-200 rounded-lg shadow"
+  class="flex flex-row items-center justify-center gap-x-12 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
 >
   <img
     class="object-contain w-32 rounded-t-lg h-48 md:w-22 md:rounded-none md:rounded-l-lg"
@@ -34,8 +24,8 @@
     <!-- Bottom Section -->
     <div class="flex justify-center items-center gap-4">
       <p class="font-normal text-gray-700">คงเหลือ 3 ชิ้น</p>
-      <button on:click={() => addToCart()} class="hover:bg-gray-300">
-        <img src={plusCircleIcon} class="w-6 h-6" alt="plus icon" />
+      <button on:click={() => editProduct()}>
+        <img src={editIcon} class="w-6 h-6" alt="edit icon" />
       </button>
     </div>
   </div>
