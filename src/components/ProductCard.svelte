@@ -1,8 +1,9 @@
 <script lang="ts">
   import { Cart } from "@/store/cart";
-  import plusCircleIcon from "/svg/plus-circle.svg";
+  import plusIcon from "/svg/plus.svg";
   export let uid = "";
   export let name = "";
+  export let itemCount = 1;
   export let image = "/images/snorlax-orange.png";
   const addToCart = () => {
     // Check if product is exited if length = 0 add Product else itemCout++
@@ -35,10 +36,15 @@
       {name}
     </h5>
     <!-- Bottom Section -->
-    <div class="flex justify-center items-center gap-4">
-      <p class="font-normal text-gray-700">คงเหลือ 3 ชิ้น</p>
-      <button on:click={() => addToCart()} class="hover:bg-gray-300">
-        <img src={plusCircleIcon} class="w-6 h-6" alt="plus icon" />
+    <div class="flex justify-between items-center gap-4">
+      <p class="font-normal text-gray-700">
+        คงเหลือ <span class="font-bold">{itemCount}</span> ชิ้น
+      </p>
+      <button
+        on:click={() => addToCart()}
+        class=" hover:text-white border-2 border-orange hover:bg-orange focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
+      >
+        <img src={plusIcon} class="w-6 h-6" alt="plus icon" />
       </button>
     </div>
   </div>
