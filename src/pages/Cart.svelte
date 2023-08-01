@@ -17,12 +17,19 @@
 
   <hr class="border mt-4" />
   <div class="flex justify-end">
-    <h2 class="text-navy p-3">รวมทั้งหมด {$cartCount} รายการ</h2>
+    <h2 class="text-navy pt-3">รวมทั้งหมด {$cartCount} รายการ</h2>
+  </div>
+  <div class="flex justify-end">
+    <button class="text-red-600 pr-3">ลบทั้งหมด</button>
   </div>
 
   <!-- Bottom Navigation -->
   <div class="flex justify-between py-2 px-6 text-navy">
     <Link to="/">&lt;&lt;ย้อนกลับ</Link>
-    <Link to="/checkout">ต่อไป &gt;&gt;</Link>
+    {#if $cartCount === 0}
+      <p>ต่อไป &gt;&gt;</p>
+    {:else}
+      <Link to="/checkout">ต่อไป &gt;&gt;</Link>
+    {/if}
   </div>
 </div>

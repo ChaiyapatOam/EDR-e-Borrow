@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{html,js,ts,svelte,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{html,js,ts,svelte,jsx,tsx}",
+    "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}",
+  ],
   theme: {
     fontFamily: {
-      'bai-jamjuree': ["Bai Jamjuree", 'sans-serif'],
+      "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
     },
     extend: {
       colors: {
@@ -14,5 +18,5 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("flowbite/plugin")],
 };

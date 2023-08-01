@@ -10,4 +10,5 @@
   <Hero />
   <CategoryList />
   <AdminProductCard name="Snorlax" uid="EDRT-001" />
+  
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import EditModal from "./EditModal.svelte";
   import editIcon from "/svg/edit.svg";
   export let uid = "";
   export let name = "";
@@ -24,9 +25,7 @@
     <!-- Bottom Section -->
     <div class="flex justify-center items-center gap-4">
       <p class="font-normal text-gray-700">คงเหลือ 3 ชิ้น</p>
-      <button on:click={() => editProduct()}>
-        <img src={editIcon} class="w-6 h-6" alt="edit icon" />
-      </button>
+      <EditModal uid={uid} name={name} image={image} itemCount />
     </div>
   </div>
 </div>

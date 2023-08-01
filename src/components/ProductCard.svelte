@@ -5,15 +5,18 @@
   export let name = "";
   export let image = "/images/snorlax-orange.png";
   const addToCart = () => {
-    $Cart = [
-      ...$Cart,
-      {
-        uid: uid,
-        productName: name,
-        image: "",
-        itemCount: 1,
-      },
-    ];
+    // Check if product is exited if length = 0 add Product else itemCout++
+    $Cart.filter((c) => c.uid == uid).length == 0
+      ? ($Cart = [
+          ...$Cart,
+          {
+            uid: uid,
+            productName: name,
+            image: image,
+            itemCount: 1,
+          },
+        ])
+      : $Cart.find((c) => c.uid == uid).itemCount++;
   };
 </script>
 

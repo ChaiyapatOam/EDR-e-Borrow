@@ -4,12 +4,10 @@
   import trashIcon from "/svg/trash.svg";
   export let uid = "";
   export let name = "";
+  export let itemCount = 1;
   export let image = "/images/snorlax-orange.png";
   const deleteProduct = () => {
-    $Cart.splice(
-      $Cart.findIndex((c) => c.uid === uid),
-      1
-    );
+    $Cart = $Cart.filter((cart) => cart.uid !== uid);
   };
 </script>
 
@@ -29,7 +27,7 @@
     </h5>
     <!-- Bottom Section -->
     <div class="flex justify-center items-center gap-4 pt-4">
-      <Couter />
+      <Couter countItem={itemCount} />
       <button on:click={deleteProduct}>
         <img src={trashIcon} class="w-6 h-6" alt="trash icon" />
       </button>
