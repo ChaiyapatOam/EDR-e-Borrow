@@ -9,7 +9,7 @@
   <button class="">
     <img
       src={minusIcon}
-      class="w-6 h-6 rounded-md outline outline-orange"
+      class="w-6 h-6 rounded-md border-2 border-orange hover:bg-orange"
       alt="minus icon"
     />
   </button>
@@ -17,7 +17,7 @@
   <button>
     <img
       src={plusIcon}
-      class="w-6 h-6 rounded-md outline outline-orange"
+      class="w-6 h-6 rounded-md border-2 border-orange hover:bg-orange"
       alt="plus icon"
     />
   </button>

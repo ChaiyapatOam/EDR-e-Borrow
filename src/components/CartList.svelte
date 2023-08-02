@@ -3,7 +3,7 @@
   import CartProduct from "./CartProduct.svelte";
 </script>
 
-<div class="flex flex-col md:flex-row md:gap-x-4 gap-y-4 px-6">
+<div class="flex flex-col flex-wrap lg:flex-row lg:gap-x-4 gap-y-4 px-6">
   {#each $Cart as c}
     <CartProduct uid={c.uid} name={c.productName} image={c.image} itemCount={c.itemCount}/>
   {/each}

@@ -3,7 +3,7 @@
   import plusIcon from "/svg/plus.svg";
   export let uid = "";
   export let name = "";
-  export let itemCount = 1;
+  export let itemCount = 0;
   export let image = "/images/snorlax-orange.png";
   const addToCart = () => {
     // Check if product is exited if length = 0 add Product else itemCout++
@@ -29,23 +29,33 @@
     src={image}
     alt=""
   />
-  <div class="flex flex-col justify-between p-4 leading-normal">
+  <!-- Right Side Content -->
+  <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
+
     <!-- Head(Category) -->
     <p class="text-orange font-bold">{uid}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
       {name}
     </h5>
+
     <!-- Bottom Section -->
     <div class="flex justify-between items-center gap-4">
-      <p class="font-normal text-gray-700">
-        คงเหลือ <span class="font-bold">{itemCount}</span> ชิ้น
-      </p>
-      <button
-        on:click={() => addToCart()}
-        class=" hover:text-white border-2 border-orange hover:bg-orange focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
-      >
-        <img src={plusIcon} class="w-6 h-6" alt="plus icon" />
-      </button>
+      {#if itemCount === 0}
+        <p class="text-black bg-red-500 rounded-md p-1">ยืมไม่ได้</p>
+        
+      {:else}
+
+        <p class="font-normal text-gray-700">
+          คงเหลือ <span class="font-bold">{itemCount}</span> ชิ้น
+        </p>
+        <!-- Button Add (ยืม) -->
+        <button
+          on:click={() => addToCart()}
+          class=" hover:text-white border-2 border-orange hover:bg-orange focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
+        >
+          <img src={plusIcon} class="w-6 h-6" alt="plus icon" />
+        </button>
+      {/if}
     </div>
   </div>
 </div>

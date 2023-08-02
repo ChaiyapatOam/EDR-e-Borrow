@@ -40,13 +40,15 @@
   </div>
   <div class="navbar-end">
     <!-- Cart -->
-    <button class="btn btn-ghost btn-circle">
-      <Link to="/cart" class="indicator">
-        <img src={cartIcon} class="cart" alt="cart" />
-        <span class="badge badge-xs badge-success indicator-item"
-          >{$cartCount}</span
-        >
-      </Link>
-    </button>
+    <Link to="/cart" class="indicator">
+      <button class="btn btn-ghost btn-circle">
+        <div class="indicator">
+          <img src={cartIcon} class="cart" alt="cart" />
+          <span class="badge badge-xs badge-success indicator-item"
+            >{$cartCount}</span
+          >
+        </div>
+      </button>
+    </Link>
   </div>
 </nav>
