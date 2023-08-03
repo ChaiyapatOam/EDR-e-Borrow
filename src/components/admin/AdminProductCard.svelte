@@ -3,6 +3,7 @@
   import editIcon from "/svg/edit.svg";
   export let uid = "";
   export let name = "";
+  export let quantity = 1;
   export let image = "/images/snorlax-orange.png";
 
   const editProduct = () => {};
@@ -24,8 +25,8 @@
     </h5>
     <!-- Bottom Section -->
     <div class="flex justify-center items-center gap-4">
-      <p class="font-normal text-gray-700">คงเหลือ 3 ชิ้น</p>
-      <EditModal uid={uid} name={name} image={image} itemCount />
+      <p class="font-normal text-gray-700">คงเหลือ {quantity} ชิ้น</p>
+      <EditModal {uid} {name} {image} itemCount />
     </div>
   </div>
 </div>

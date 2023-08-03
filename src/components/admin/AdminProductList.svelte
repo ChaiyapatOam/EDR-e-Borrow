@@ -1,15 +1,14 @@
 <script lang="ts">
   import { getAllProduct } from "@/lib/db/Product";
-  import ProductCard from "./ProductCard.svelte";
   import { onMount } from "svelte";
   import type { Product } from "@/types/ProductType";
+  import AdminProductCard from "./AdminProductCard.svelte";
 
   let products: Product[];
 
   onMount(async () => {
     try {
       products = await getAllProduct();
-      console.log(products);
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +20,7 @@
 >
   {#if products}
     {#each products as product}
-      <ProductCard
+      <AdminProductCard
         uid={product.category + "-" + product.id}
         name={product.name}
         image={product.image}

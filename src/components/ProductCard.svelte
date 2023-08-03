@@ -3,7 +3,7 @@
   import plusIcon from "/svg/plus.svg";
   export let uid = "";
   export let name = "";
-  export let itemCount = 0;
+  export let quantity = 0;
   export let image = "/images/snorlax-orange.png";
   const addToCart = () => {
     // Check if product is exited if length = 0 add Product else itemCout++
@@ -37,16 +37,16 @@
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
       {name}
     </h5>
-
+    
     <!-- Bottom Section -->
     <div class="flex justify-between items-center gap-4">
-      {#if itemCount === 0}
+      {#if quantity === 0}
         <p class="text-black bg-red-500 rounded-md p-1">ยืมไม่ได้</p>
         
       {:else}
 
         <p class="font-normal text-gray-700">
-          คงเหลือ <span class="font-bold">{itemCount}</span> ชิ้น
+          คงเหลือ <span class="font-bold">{quantity}</span> ชิ้น
         </p>
         <!-- Button Add (ยืม) -->
         <button
