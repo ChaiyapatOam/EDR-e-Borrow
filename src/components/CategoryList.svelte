@@ -1,9 +1,17 @@
 <script lang="ts">
+  import { Cart } from "@/store/cart";
+
   let categoryList = ["All", "Components", "Tools"];
   let state = 0;
+
   const changeIndex = (idx: number) => {
     state = idx;
   };
+  // Filter components and tools
+  if (state === 1) {
+  //  $Product = $Product.filter((c) => c.uid == uid)
+  }
+
   let color = "";
 </script>
 

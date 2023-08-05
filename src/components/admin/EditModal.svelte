@@ -26,6 +26,7 @@
 >
   <form class="flex flex-col justify-center space-y-6" action="#">
     <h3 class="mb-4 text-xl font-bold text-navy">แก้ไข</h3>
+    
     <Label class="space-y-2">
       <span class="text-navy">ชื่อ</span>
       <Input
@@ -38,11 +39,11 @@
       />
     </Label>
 
-    <!-- หมวดหมู่ -->
-    <Label class="space-y-2">
+    <!-- หมวดหมู่ *Cant Update Category *-->
+    <!-- <Label class="space-y-2">
       <span>หมวดหมู่</span>
       <Select class="mt-2" items={categories} bind:value={selected} />
-    </Label>
+    </Label> -->
 
     <!-- จำนวน -->
     <Label class="space-y-2">
@@ -59,7 +60,7 @@
     <!-- อัพโหลดรูป -->
     <Label class="space-y-2">
       <span>อัพโหลดรูป</span>
-      <Input type="file" name="image" value={image} required />
+      <!-- <Input type="file" name="image" value={image} required /> -->
     </Label>
 
     <Button type="submit" class="w-full bg-orange text-navy font-bold"

@@ -5,8 +5,10 @@
   export let name = "";
   export let quantity = 1;
   export let image = "/images/snorlax-orange.png";
+  import trashIcon from "/svg/trash.svg";
 
   const editProduct = () => {};
+  const deleteProduct = () => {};
 </script>
 
 <div
@@ -17,16 +19,22 @@
     src={image}
     alt=""
   />
-  <div class="flex flex-col justify-between p-4 leading-normal">
+  <!-- Right -->
+  <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
     <!-- Head(Category) -->
     <p class="text-orange font-bold">{uid}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
       {name}
     </h5>
     <!-- Bottom Section -->
-    <div class="flex justify-center items-center gap-4">
-      <p class="font-normal text-gray-700">คงเหลือ {quantity} ชิ้น</p>
+    <div class="flex justify-center items-center gap-2">
+      <p class="font-normal text-gray-700">
+        เหลือ <span class="font-bold">{quantity}</span> ชิ้น
+      </p>
       <EditModal {uid} {name} {image} itemCount />
+      <!-- <button on:click={deleteProduct}>
+        <img src={trashIcon} class="w-6 h-6" alt="trash icon" />
+      </button> -->
     </div>
   </div>
 </div>

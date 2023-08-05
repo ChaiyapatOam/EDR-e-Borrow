@@ -16,7 +16,7 @@
 </script>
 
 <div
-  class="flex flex-col flex-wrap md:flex-row md:gap-x-4 md:basis-1/2 gap-y-4 px-6"
+  class="flex flex-col flex-wrap justify-center md:flex-row md:gap-x-4 md:basis-1/2 gap-y-4 px-6"
 >
   {#if products}
     {#each products as product}

@@ -6,13 +6,6 @@
 
 <div>
   <h1 class="text-3xl text-navy font-bold p-4">รายการทั้งหมด</h1>
-  {#each $Cart as item}
-    <p>
-      {item.uid} :
-      {item.productName}
-      {item.itemCount}
-    </p>
-  {/each}
   <CartList />
 
   <hr class="border mt-4" />

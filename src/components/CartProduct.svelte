@@ -19,7 +19,8 @@
     src={image}
     alt=""
   />
-  <div class="flex flex-col justify-between p-4 leading-normal">
+  <!-- Right -->
+  <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
     <!-- Head(Category) -->
     <p class="text-orange font-bold">{uid}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">

@@ -9,7 +9,7 @@
   onMount(async () => {
     try {
       products = await getAllProduct();
-      console.log(products);
+      // console.log(products);
     } catch (error) {
       console.log(error);
     }
@@ -17,7 +17,7 @@
 </script>
 
 <div
-  class="flex flex-col flex-wrap md:flex-row md:gap-x-4 md:basis-1/2 gap-y-4 px-6"
+  class="flex flex-col flex-wrap justify-center md:flex-row md:gap-x-4 md:basis-1/2 gap-y-4 px-6"
 >
   {#if products}
     {#each products as product}
@@ -29,6 +29,6 @@
       />
     {/each}
   {:else}
-    <h1 class="text-orange text-center font-bold p-4">Nothing</h1>
+    <h1 class="text-orange text-center font-bold p-4">Nothing here</h1>
   {/if}
 </div>

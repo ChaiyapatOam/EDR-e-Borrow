@@ -1,13 +1,13 @@
 <script lang="ts">
   import { UploadImage } from "@/lib/supabase";
-  import { createProduct, getAllProduct } from "@/lib/db/Product";
+  import { createProduct } from "@/lib/db/Product";
   import { Button, Modal, Label, Input, Select } from "flowbite-svelte";
   import type { Product } from "@/types/ProductType";
 
   let formModal = false;
   let categories = [
-    { value: "EDRC", name: "Components" },
-    { value: "EDRT", name: "Tools" },
+    { value: "EDRC", name: "Components(EDRC)" },
+    { value: "EDRT", name: "Tools(EDRT)" },
   ];
 
   let imageFile: File;
@@ -26,7 +26,6 @@
 
   const onSubmit = async () => {
     data.image = await UploadImage(imageFile);
-    console.log(data);
 
     formModal = false;
     await createProduct(data);
@@ -60,7 +59,11 @@
     <!-- หมวดหมู่ -->
     <Label class="space-y-2">
       <span class="text-navy">หมวดหมู่</span>
-      <Select class="mt-2" items={categories} bind:value={data.category} />
+      <Select
+        class="mt-2 focus:border-orange focus:ring-orange"
+        items={categories}
+        bind:value={data.category}
+      />
     </Label>
 
     <!-- จำนวน -->
@@ -69,6 +72,7 @@
       <Input
         type="number"
         bind:value={data.quantity}
+        class="focus:border-orange focus:ring-orange"
         name="count"
         placeholder="0"
         required
