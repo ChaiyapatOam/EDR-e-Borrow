@@ -8,18 +8,19 @@ const dbName = {
 
 export const getAllProduct = async () => {
   // const { data, error } = await supabase.from("edr_all_product").select();
-  const components = await getAllComponents()
-  const tools = await getAllTools()
+  const components = await getAllComponents();
+  const tools = await getAllTools();
   const data = components.concat(tools);
-  console.log(data);
-  
+  // console.log(data);
+
   return data;
 };
 
 export const getAllComponents = async () => {
   const { data, error } = await supabase
     .from("edr_product_components")
-    .select();
+    .select()
+    .order("id");
 
   if (error) console.log(error);
 
@@ -27,7 +28,10 @@ export const getAllComponents = async () => {
 };
 
 export const getAllTools = async () => {
-  const { data, error } = await supabase.from("edr_product_tools").select();
+  const { data, error } = await supabase
+    .from("edr_product_tools")
+    .select()
+    .order("id");
 
   if (error) console.log(error);
 
@@ -62,11 +66,11 @@ export const findProduct = async (name: string, dbName: string) => {
 
 export const createProduct = async (product: Omit<Product, "id">) => {
   console.log(product);
-  
+
   const { data, error } = await supabase
     .from(dbName[product.category])
     .insert(product);
-  
+
   const uid = await findProduct(product.name, dbName[product.category]);
 
   // Create in All Product Table
