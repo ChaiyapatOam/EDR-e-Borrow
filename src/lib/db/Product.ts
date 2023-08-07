@@ -54,33 +54,16 @@ export const findProduct = async (name: string, dbName: string) => {
     .select()
     .eq("name", name)
     .single();
-  let uid = data.category;
-  // Assign UID
-  if (data.id < 10) {
-    uid = uid + "-00" + data.id;
-  } else {
-    uid = uid + "-0" + data.id;
-  }
-  return uid;
+
+  return data;
 };
 
 export const createProduct = async (product: Omit<Product, "id">) => {
-  console.log(product);
+  // console.log(product);
 
   const { data, error } = await supabase
     .from(dbName[product.category])
     .insert(product);
-
-  const uid = await findProduct(product.name, dbName[product.category]);
-
-  // Create in All Product Table
-  await supabase.from("edr_all_product").insert({
-    name: product.name,
-    uid: uid,
-    category: product.category,
-    quantity: product.quantity,
-    image: product.image,
-  });
 
   if (error) console.log(error);
 

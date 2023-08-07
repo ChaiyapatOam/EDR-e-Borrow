@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import CartList from "@/components/CartList.svelte";
-  import { Cart, cartCount } from "@/store/cart";
+  import {cartCount } from "@/store/cart";
 </script>
 
 <div>

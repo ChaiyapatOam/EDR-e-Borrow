@@ -1,11 +1,6 @@
+import type { Product } from "@/types/ProductType";
 import { derived, writable } from "svelte/store";
 
-interface Product {
-  uid: string;
-  productName: string;
-  image: string;
-  itemCount: number;
-}
 
 export const Cart = writable<Product[]>([]);
 

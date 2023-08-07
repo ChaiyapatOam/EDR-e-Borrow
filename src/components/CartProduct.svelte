@@ -2,12 +2,13 @@
   import { Cart } from "@/store/cart";
   import Couter from "./Couter.svelte";
   import trashIcon from "/svg/trash.svg";
-  export let uid = "";
+  export let id: number;
+  export let category = "";
   export let name = "";
-  export let itemCount = 1;
-  export let image = "/images/snorlax-orange.png";
+  export let quantity = 1;
+  export let image = "/images/no-image.webp";
   const deleteProduct = () => {
-    $Cart = $Cart.filter((cart) => cart.uid !== uid);
+    $Cart = $Cart.filter((cart) => cart.id !== id);
   };
 </script>
 
@@ -22,13 +23,13 @@
   <!-- Right -->
   <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
     <!-- Head(Category) -->
-    <p class="text-orange font-bold">{uid}</p>
+    <p class="text-orange font-bold">{category + "-" + id}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
       {name}
     </h5>
     <!-- Bottom Section -->
     <div class="flex justify-between items-center gap-4 pt-4">
-      <Couter countItem={itemCount} />
+      <Couter countItem={quantity} />
       <button on:click={deleteProduct}>
         <img src={trashIcon} class="w-6 h-6" alt="trash icon" />
       </button>

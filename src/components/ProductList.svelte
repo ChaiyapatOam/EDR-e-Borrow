@@ -21,7 +21,6 @@
   const changeIndex = (idx: number) => {
     state = idx;
   };
-
 </script>
 
 <!-- Category -->
@@ -49,33 +48,43 @@
     {#if state === 0}
       {#each products as product}
         <ProductCard
+          id={product.id}
           uid={product.category + "-" + product.id}
           name={product.name}
           image={product.image}
           quantity={product.quantity}
+          category={product.category}
         />
       {/each}
     {/if}
-    <!-- EDRC -->
+
     {#if state === 1}
-      {#each products.filter((p) => p.category == "EDRC") as product}
-        <ProductCard
-          uid={product.category + "-" + product.id}
-          name={product.name}
-          image={product.image}
-          quantity={product.quantity}
-        />
+      {#each products as product}
+        {#if product.category == "EDRC"}
+          <ProductCard
+            id={product.id}
+            uid={product.category + "-" + product.id}
+            name={product.name}
+            image={product.image}
+            quantity={product.quantity}
+            category={product.category}
+          />
+        {/if}
       {/each}
     {/if}
-    <!-- EDRT -->
+
     {#if state === 2}
-      {#each products.filter((p) => p.category == "EDRT") as product}
-        <ProductCard
-          uid={product.category + "-" + product.id}
-          name={product.name}
-          image={product.image}
-          quantity={product.quantity}
-        />
+      {#each products as product}
+        {#if product.category == "EDRT"}
+          <ProductCard
+            id={product.id}
+            uid={product.category + "-" + product.id}
+            name={product.name}
+            image={product.image}
+            quantity={product.quantity}
+            category={product.category}
+          />
+        {/if}
       {/each}
     {/if}
   {:else}

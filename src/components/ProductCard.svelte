@@ -1,23 +1,26 @@
 <script lang="ts">
   import { Cart } from "@/store/cart";
   import plusIcon from "/svg/plus.svg";
+  export let id: number;
   export let uid = "";
   export let name = "";
   export let quantity = 0;
+  export let category = "";
   export let image = "/images/snorlax-orange.png";
   const addToCart = () => {
     // Check if product is exited if length = 0 add Product else itemCout++
-    $Cart.filter((c) => c.uid == uid).length == 0
+    $Cart.filter((c) => c.id == id).length == 0
       ? ($Cart = [
           ...$Cart,
           {
-            uid: uid,
-            productName: name,
+            id: id,
+            name: name,
             image: image,
-            itemCount: 1,
+            category: category,
+            quantity: 1,
           },
         ])
-      : $Cart.find((c) => c.uid == uid).itemCount++;
+      : $Cart.find((c) => c.id == id).quantity++;
   };
 </script>
 
@@ -31,24 +34,29 @@
   />
   <!-- Right Side Content -->
   <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
-
     <!-- Head(Category) -->
     <p class="text-orange font-bold">{uid}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
       {name}
     </h5>
-    
+
     <!-- Bottom Section -->
     <div class="flex justify-between items-center gap-4">
-      {#if quantity === 0}
+      {#if category == "EDRT"}
+        {#if quantity === 0}
+          <p class="text-black bg-red-500 rounded-md p-1">ยืมไม่ได้</p>
+        {:else}
+          <p class="text-black bg-green-400 rounded-md p-1">ยืมได้</p>
+        {/if}
+      {:else if quantity === 0}
         <p class="text-black bg-red-500 rounded-md p-1">ยืมไม่ได้</p>
-        
       {:else}
-
         <p class="font-normal text-gray-700">
           คงเหลือ <span class="font-bold">{quantity}</span> ชิ้น
         </p>
-        <!-- Button Add (ยืม) -->
+      {/if}
+      <!-- Button Add (ยืม) -->
+      {#if quantity > 0}
         <button
           on:click={() => addToCart()}
           class=" hover:text-white border-2 border-orange hover:bg-orange focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
