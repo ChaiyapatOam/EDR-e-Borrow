@@ -6,7 +6,7 @@
   export let name = "";
   export let quantity = 0;
   export let category = "";
-  export let image = "/images/snorlax-orange.png";
+  export let image = "/images/no-image.webp";
   const addToCart = () => {
     // Check if product is exited if length = 0 add Product else itemCout++
     $Cart.filter((c) => c.id == id).length == 0

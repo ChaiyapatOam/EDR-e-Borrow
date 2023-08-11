@@ -8,7 +8,7 @@ export async function findUser(tel: string) {
     .single();
   if (error) console.log(error);
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 }
@@ -22,7 +22,7 @@ export async function createUser(phone: string, name: string) {
 
     if (error) console.log(error);
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 }

@@ -7,6 +7,7 @@
   import NotFound from "./pages/NotFound.svelte";
   import Admin from "./pages/admin/Admin.svelte";
   import Checkout from "./pages/Checkout.svelte";
+  import Return from "./pages/Return.svelte";
   export let url = "";
 </script>
 
@@ -15,6 +16,7 @@
     <Route path="/" component={Home} />
     <Route path="/cart" component={Cart} />
     <Route path="/checkout" component={Checkout} />
+    <Route path="/return" component={Return} />
     <Route path="/admin" component={Admin} />
     <Route component={NotFound} />
   </main>
