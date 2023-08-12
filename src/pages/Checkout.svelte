@@ -4,7 +4,7 @@
   import { Cart } from "@/store/cart";
 
   import { checkandCreateUser } from "@/lib/db/User";
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
 
   $: data = {
     name: "",
@@ -14,6 +14,9 @@
     // await SubmitBorrow(data);
     const user = await checkandCreateUser(data.phone, data.name);
     await SubmitBorrow(user.id, $Cart);
+
+    // Todo: clear store plz
+    navigate("/");
   };
 </script>
 

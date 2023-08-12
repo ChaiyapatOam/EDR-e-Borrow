@@ -13,15 +13,18 @@
 </script>
 
 <div
-  class="flex flex-row items-center justify-center gap-x-12 bg-white border border-gray-200 rounded-lg shadow"
+  class="grid grid-cols-2 max-w-xs bg-white border border-gray-200 rounded-lg shadow"
 >
-  <img
+
+  <div class="p-4">
+    <img
     class="object-contain w-32 rounded-t-lg h-48 md:w-22 md:rounded-none md:rounded-l-lg"
     src={image}
     alt=""
   />
+  </div>
   <!-- Right -->
-  <div class="flex flex-col justify-between w-2/5 p-4 leading-normal">
+  <div class="flex flex-col self-center p-4 leading-normal">
     <!-- Head(Category) -->
     <p class="text-orange font-bold">{category + "-" + id}</p>
     <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
