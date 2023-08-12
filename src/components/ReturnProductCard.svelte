@@ -1,8 +1,10 @@
 <script lang="ts">
   export let id: number;
+  export let itemId: number;
   export let uid = "";
   export let name = "";
   export let category = "";
+  export let quantity = 1;
   export let arr = [];
   export let image = "/images/no-image.webp";
 
@@ -13,10 +15,12 @@
         {
           id: id,
           category: category,
+          itemId: itemId,
+          quantity: quantity,
         },
       ];
     }
-    // remove from list 
+    // remove from list
     else {
       arr = arr.filter((item) => item.id !== id);
     }

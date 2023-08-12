@@ -8,17 +8,6 @@ export async function SubmitBorrow(edr_users_id: string, products: Product[]) {
     edr_users_id,
     products.filter((product) => product.category == "EDRT")
   );
-  await SubmitReturnComponents(
-    edr_users_id,
-    products.filter((product) => product.category == "EDRC")
-  );
-}
-
-export async function SubmitReturn(edr_users_id: string, products: Product[]) {
-  await SubmitReturnTools(
-    edr_users_id,
-    products.filter((product) => product.category == "EDRT")
-  );
   await SubmitBorrowComponents(
     edr_users_id,
     products.filter((product) => product.category == "EDRC")
@@ -41,7 +30,6 @@ export async function SubmitBorrowTools(
   const result1 = await supabase
     .from("edr_transaction_tools")
     .insert(transactionData);
-
   if (result1.error) console.log(result1.error);
 
   const updataData = products.map((obj: Product) => {
@@ -65,6 +53,7 @@ export async function SubmitBorrowComponents(
       user_id: edr_users_id,
       comp_id: obj.id,
       status: false,
+      quantity: obj.quantity,
     };
   });
   const DataNow = await getAllComponents();
@@ -106,7 +95,8 @@ export async function getTransaction(phone: string) {
       edr_product_tools( id, name, image, quantity, category)
       `
     )
-    .eq("user_id", user.id);
+    .eq("user_id", user.id)
+    .eq("status", false);
 
   const resultComp = await supabase
     .from("edr_transaction_components")
@@ -115,57 +105,76 @@ export async function getTransaction(phone: string) {
       user_id,
       comp_id,
       status,
+      quantity,
       edr_product_components( id, name, image, quantity, category)
       `
     )
-    .eq("user_id", user.id);
+    .eq("user_id", user.id)
+    .eq("status", false);
+
+  console.log(resultTools.data);
 
   return [resultTools.data, resultComp.data];
 }
 
-export async function returnTool(edr_users_id: string, products: Product[]) {
-  const transactionData = products.map((obj: Product) => {
-    return {
-      user_id: edr_users_id,
-      comp_id: obj.id,
-      status: false,
-    };
-  });
-  const DataNow = await getAllComponents();
-  const result1 = await supabase
-    .from("edr_transaction_components")
-    .insert(transactionData);
+export async function SubmitReturn(edr_users_id: string, products: any[]) {
+  await SubmitReturnTools(products.filter((item) => item.category == "EDRT"));
+  await SubmitReturnComponents(
+    products.filter((product) => product.category == "EDRC")
+  );
+}
 
-  if (result1.error) console.log(result1.error);
-
-  const updataData = [].concat(
-    products.map((obj: Product) => {
+export async function SubmitReturnTools(products: any[]) {
+  const updataData1 = [].concat(
+    products.map((item: any) => {
       return {
-        id: obj.id,
-        quantity:
-          DataNow.find((arr: Product) => arr.id == obj.id).quantity -
-          obj.quantity,
+        id: item.id,
+        status: true,
+      };
+    })
+  );
+  // Return quantity = 1
+  const updataData2 = [].concat(
+    products.map((item: any) => {
+      return {
+        id: item.itemId,
+        quantity: 1,
+      };
+    })
+  );
+  const result1 = await supabase
+    .from("edr_transaction_tools")
+    .upsert(updataData1);
+
+  const result2 = await supabase.from("edr_product_tools").upsert(updataData2);
+}
+
+export async function SubmitReturnComponents(products: any[]) {
+  const updataData1 = [].concat(
+    products.map((item: any) => {
+      return {
+        id: item.id,
+        status: true,
       };
     })
   );
 
+  const DataNow = await getAllComponents();
+  const updataData2 = [].concat(
+    products.map((item: any) => {
+      return {
+        id: item.itemId,
+        quantity:
+          DataNow.find((arr: Product) => arr.id == item.itemId).quantity +
+          item.quantity,
+      };
+    })
+  );
+  const result1 = await supabase
+    .from("edr_transaction_components")
+    .upsert(updataData1);
+
   const result2 = await supabase
     .from("edr_product_components")
-    .upsert(updataData);
-
-  return result2.data;
-}
-
-export async function SubmitReturnTools(
-  edr_users_id: string,
-  products: Product[]
-) {
-  
-}
-
-export async function SubmitReturnComponents(
-  edr_users_id: string,
-  products: Product[]
-) {
-  
+    .upsert(updataData2);
 }
