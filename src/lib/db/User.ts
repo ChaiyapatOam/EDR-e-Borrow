@@ -12,6 +12,14 @@ export async function findUser(tel: string) {
 
   return data;
 }
+export async function getAllUser() {
+  const { data, error } = await supabase.from("edr_users").select();
+  if (error) console.log(error);
+
+  // console.log(data);
+  
+  return data;
+}
 
 export async function createUser(phone: string, name: string) {
   const { data, error } = await supabase
@@ -20,14 +28,14 @@ export async function createUser(phone: string, name: string) {
     .select()
     .single();
 
-    if (error) console.log(error);
+  if (error) console.log(error);
 
   // console.log(data);
 
   return data;
 }
 
-export async function checkandCreateUser(phone: string, name: string) {
+export async function checkAndCreateUser(phone: string, name: string) {
   //
   const user = await findUser(phone);
   if (!user) {

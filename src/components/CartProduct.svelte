@@ -32,7 +32,7 @@
     </h5>
     <!-- Bottom Section -->
     <div class="flex justify-between items-center gap-4 pt-4">
-      <Couter countItem={quantity} />
+      <Couter id={id} productQuantity={quantity} countItem={quantity} />
       <button on:click={deleteProduct}>
         <img src={trashIcon} class="w-6 h-6" alt="trash icon" />
       </button>

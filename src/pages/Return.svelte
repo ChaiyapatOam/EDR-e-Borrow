@@ -6,6 +6,7 @@
     import { Button, Input, Label } from "flowbite-svelte";
     import { SubmitReturn, getTransaction } from "@/lib/db/Transaction";
     import { navigate } from "svelte-routing";
+  import Navbar from "@/components/Navbar.svelte";
 
     let transactionsTools = [];
     let transactionsComps = [];
@@ -24,6 +25,7 @@
     };
 </script>
 
+<Navbar/>
 <div class="p-4">
     <div class="flex items-center">
         <button on:click={() => navigate("/")}>
