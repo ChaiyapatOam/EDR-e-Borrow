@@ -4,6 +4,7 @@ export interface Product {
   category: string;
   quantity: number;
   image: string;
+  selectQuantity?: number;
 }
 
 export interface CartProduct {

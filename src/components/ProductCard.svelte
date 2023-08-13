@@ -9,7 +9,7 @@
     export let image = "/images/no-image.webp";
     const addToCart = () => {
         // Check if product is exited if length = 0 add Product else itemCout++
-        $Cart.filter((c) => c.id == id).length == 0
+        $Cart.filter((c) => c.id == id && c.category == category).length == 0
             ? ($Cart = [
                   ...$Cart,
                   {
@@ -17,14 +17,18 @@
                       name: name,
                       image: image,
                       category: category,
-                      quantity: 1,
+                      quantity: quantity,
+                      selectQuantity: 1,
                   },
               ])
-            : $Cart.find((c) => c.id == id).quantity++;
+            : $Cart.find((c) => c.id == id && c.category == category)
+                  .selectQuantity++;
     };
 </script>
 
-<div class="grid grid-cols-2 max-w-xs bg-white border border-gray-200 rounded-lg shadow">
+<div
+    class="grid grid-cols-2 max-w-xs bg-white border border-gray-200 rounded-lg shadow"
+>
     <div class="p-4">
         <img
             class="object-contain w-32 rounded-t-lg h-48 md:w-22 md:rounded-none md:rounded-l-lg"

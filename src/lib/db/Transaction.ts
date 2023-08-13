@@ -53,10 +53,10 @@ export async function SubmitBorrowComponents(
             user_id: edr_users_id,
             comp_id: obj.id,
             status: false,
-            quantity: obj.quantity,
+            quantity: obj.selectQuantity,
         };
     });
-    const DataNow = await getAllComponents();
+
     const result1 = await supabase
         .from("edr_transaction_components")
         .insert(transactionData);
@@ -67,9 +67,7 @@ export async function SubmitBorrowComponents(
         products.map((obj: Product) => {
             return {
                 id: obj.id,
-                quantity:
-                    DataNow.find((arr: Product) => arr.id == obj.id).quantity -
-                    obj.quantity,
+                quantity: obj.quantity - obj.selectQuantity,
             };
         })
     );
