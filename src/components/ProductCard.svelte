@@ -9,20 +9,28 @@
     export let image = "/images/no-image.webp";
     const addToCart = () => {
         // Check if product is exited if length = 0 add Product else itemCout++
-        $Cart.filter((c) => c.id == id && c.category == category).length == 0
-            ? ($Cart = [
-                  ...$Cart,
-                  {
-                      id: id,
-                      name: name,
-                      image: image,
-                      category: category,
-                      quantity: quantity,
-                      selectQuantity: 1,
-                  },
-              ])
-            : $Cart.find((c) => c.id == id && c.category == category)
-                  .selectQuantity++;
+        if (
+            $Cart.filter((c) => c.id == id && c.category == category).length ==
+            0
+        ) {
+            $Cart = [
+                ...$Cart,
+                {
+                    id: id,
+                    name: name,
+                    image: image,
+                    category: category,
+                    quantity: quantity,
+                    selectQuantity: 1,
+                },
+            ];
+        } else {
+            let data = $Cart.find((c) => c.id == id && c.category == category);
+            if (data.quantity > data.selectQuantity) {
+                $Cart.find((c) => c.id == id && c.category == category)
+                    .selectQuantity++;
+            }
+        }
     };
 </script>
 
