@@ -1,7 +1,7 @@
 <script lang="ts">
   import { SubmitBorrow } from "@/lib/db/Transaction";
   import { Button, Label, Input, Select } from "flowbite-svelte";
-  import { Cart } from "@/store/cart";
+  import { Cart, clearCart } from "@/store/cart";
 
   import { checkAndCreateUser } from "@/lib/db/User";
   import arrowBack from "/svg/arrow-back.svg";
@@ -18,6 +18,7 @@
     await SubmitBorrow(user.id, $Cart);
 
     // Todo: clear store plz
+    clearCart();
     navigate("/");
   };
 </script>

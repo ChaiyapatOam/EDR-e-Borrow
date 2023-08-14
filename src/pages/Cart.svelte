@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import CartList from "@/components/CartList.svelte";
-  import {cartCount } from "@/store/cart";
+  import { cartCount, clearCart } from "@/store/cart";
 </script>
 
 <div>
@@ -13,7 +13,7 @@
     <h2 class="text-navy pt-3">รวมทั้งหมด {$cartCount} รายการ</h2>
   </div>
   <div class="flex justify-end">
-    <button class="text-red-600 pr-3">ลบทั้งหมด</button>
+    <button class="text-red-600 pr-3" on:click={clearCart}>ลบทั้งหมด</button>
   </div>
 
   <!-- Bottom Navigation -->
