@@ -6,11 +6,11 @@ import { getAllComponents } from "./Product";
 export async function SubmitBorrow(edr_users_id: string, products: Product[]) {
     await SubmitBorrowTools(
         edr_users_id,
-        products.filter((product) => product.category == "EDRT")
+        products.filter((product) => product.category == "EDRET")
     );
     await SubmitBorrowComponents(
         edr_users_id,
-        products.filter((product) => product.category == "EDRC")
+        products.filter((product) => product.category == "EDREC")
     );
 }
 
@@ -116,9 +116,9 @@ export async function getTransaction(phone: string) {
 }
 
 export async function SubmitReturn(edr_users_id: string, products: any[]) {
-    await SubmitReturnTools(products.filter((item) => item.category == "EDRT"));
+    await SubmitReturnTools(products.filter((item) => item.category == "EDRET"));
     await SubmitReturnComponents(
-        products.filter((product) => product.category == "EDRC")
+        products.filter((product) => product.category == "EDREC")
     );
 }
 

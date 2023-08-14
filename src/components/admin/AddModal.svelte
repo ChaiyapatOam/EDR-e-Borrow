@@ -6,8 +6,8 @@
 
     let formModal = false;
     let categories = [
-        { value: "EDRC", name: "Components(EDRC)" },
-        { value: "EDRT", name: "Tools(EDRT)" },
+        { value: "EDREC", name: "Components(EDREC)" },
+        { value: "EDRET", name: "Tools(EDRET)" },
     ];
 
     let imageFile: File;
@@ -15,12 +15,12 @@
 
     $: data = {
         name: "",
-        category: "EDRC",
+        category: "EDREC",
         quantity: 1,
         image: "",
     };
 
-    $: data.category === "EDRT" ? (data.quantity = 1) : null;
+    $: data.category === "EDRET" ? (data.quantity = 1) : null;
 
     const onFileSelected = (e) => {
         imageFile = e.target.files[0];
@@ -71,7 +71,7 @@
         <!-- จำนวน -->
         <Label class="space-y-2">
             <span class="text-navy">จำนวน</span>
-            {#if data.category === "EDRC"}
+            {#if data.category === "EDREC"}
                 <Input
                     type="number"
                     bind:value={data.quantity}

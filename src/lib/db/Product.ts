@@ -2,8 +2,8 @@ import type { Product } from "@/types/ProductType";
 import { supabase } from "../supabase";
 
 const dbName = {
-    EDRC: "edr_product_components",
-    EDRT: "edr_product_tools",
+    EDREC: "edr_product_components",
+    EDRET: "edr_product_tools",
 };
 
 export const getAllProduct = async () => {

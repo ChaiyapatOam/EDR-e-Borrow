@@ -54,7 +54,7 @@
 
         <!-- Bottom Section -->
         <div class="flex justify-between items-center gap-4">
-            {#if category == "EDRT"}
+            {#if category == "EDRET"}
                 {#if quantity === 0}
                     <p class="text-black bg-red-500 rounded-md p-1">
                         ยืมไม่ได้

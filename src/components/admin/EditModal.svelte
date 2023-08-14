@@ -50,7 +50,7 @@
         <!-- จำนวน -->
         <Label class="space-y-2">
             <span>จำนวน</span>
-            {#if category === "EDRC"}
+            {#if category === "EDREC"}
                 <Input
                     type="number"
                     bind:value={itemCount}

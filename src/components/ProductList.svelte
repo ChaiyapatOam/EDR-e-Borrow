@@ -60,7 +60,7 @@
 
     {#if state === 1}
       {#each products as product}
-        {#if product.category == "EDRC"}
+        {#if product.category == "EDREC"}
           <ProductCard
             id={product.id}
             uid={product.category + "-" + product.id}
@@ -75,7 +75,7 @@
 
     {#if state === 2}
       {#each products as product}
-        {#if product.category == "EDRT"}
+        {#if product.category == "EDRET"}
           <ProductCard
             id={product.id}
             uid={product.category + "-" + product.id}
