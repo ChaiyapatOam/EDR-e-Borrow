@@ -15,21 +15,21 @@
     });
 </script>
 
-<div
-    class="flex flex-col flex-wrap justify-center md:flex-row md:gap-x-4 md:basis-1/2 gap-y-4 px-6"
->
-    {#if products}
-        {#each products as product}
-            <AdminProductCard
-                id={product.id}
-                uid={product.category + "-" + product.id}
-                name={product.name}
-                image={product.image}
-                quantity={product.quantity}
-                category={product.category}
-            />
-        {/each}
-    {:else}
-        <h1 class="text-orange text-center font-bold p-4">Nothing</h1>
-    {/if}
-</div>
+<section>
+    <div class="flex flex-wrap justify-center mx-auto gap-y-4 md:gap-x-4 px-6">
+        {#if products}
+            {#each products as product}
+                <AdminProductCard
+                    id={product.id}
+                    uid={product.category + "-" + product.id}
+                    name={product.name}
+                    image={product.image}
+                    quantity={product.quantity}
+                    category={product.category}
+                />
+            {/each}
+        {:else}
+            <h1 class="text-orange text-center font-bold p-4">Nothing</h1>
+        {/if}
+    </div>
+</section>
