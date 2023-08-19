@@ -4,7 +4,7 @@
     import type { Product } from "@/types/ProductType";
 
     import { Button, Input, Label } from "flowbite-svelte";
-    import { SubmitReturn, getTransaction } from "@/lib/db/Transaction";
+    import { SubmitReturn, searchTransactionByPhone } from "@/lib/db/Transaction";
     import { navigate } from "svelte-routing";
     import Navbar from "@/components/Navbar.svelte";
 
@@ -14,9 +14,9 @@
     let phone: string;
 
     const onClickSearch = async () => {
-        [transactionsTools, transactionsComps] = await getTransaction(phone);
-        // console.log(transactionsTools);
-        // console.log(transactionsComps);
+        [transactionsTools, transactionsComps] = await searchTransactionByPhone(phone);
+        console.log(transactionsTools);
+        console.log(transactionsComps);
     };
 
     const onSubmit = async() => {
