@@ -8,6 +8,7 @@
   import Admin from "./pages/admin/Admin.svelte";
   import Checkout from "./pages/Checkout.svelte";
   import Return from "./pages/Return.svelte";
+  import Users from "./pages/Users.svelte";
   export let url = "";
 </script>
 
@@ -18,6 +19,7 @@
     <Route path="/checkout" component={Checkout} />
     <Route path="/return" component={Return} />
     <Route path="/admin" component={Admin} />
+    <Route path="/users" component={Users} />
     <Route component={NotFound} />
   </main>
 </Router>

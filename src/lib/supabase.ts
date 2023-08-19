@@ -15,7 +15,7 @@ export const Search = async (value: string) => {
   return data;
 };
 
-export async function UploadImage(file: File) {
+export async function UploadImage(file: File): Promise<string> {
   let fileName = "product/" + nanoid();
   const { error } = await supabase.storage
     .from("images")

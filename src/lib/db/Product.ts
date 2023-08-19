@@ -2,81 +2,82 @@ import type { Product } from "@/types/ProductType";
 import { supabase } from "../supabase";
 
 const dbName = {
-    EDREC: "edr_product_components",
-    EDRET: "edr_product_tools",
+  EDREC: "edr_product_components",
+  EDRET: "edr_product_tools",
 };
 
 export const getAllProduct = async () => {
-    // const { data, error } = await supabase.from("edr_all_product").select();
-    const components = await getAllComponents();
-    const tools = await getAllTools();
-    const data = components.concat(tools);
-    // console.log(data);
+  // const { data, error } = await supabase.from("edr_all_product").select();
+  const components = await getAllComponents();
+  const tools = await getAllTools();
+  const data = components.concat(tools);
+  // console.log(data);
 
-    return data;
+  return data;
 };
 
 export const getAllComponents = async () => {
-    const { data, error } = await supabase
-        .from("edr_product_components")
-        .select()
-        .order("id");
+  const { data, error } = await supabase
+    .from("edr_product_components")
+    .select()
+    .order("id");
 
-    if (error) console.log(error);
+  if (error) console.log(error);
 
-    return data;
+  return data;
 };
 
 export const getAllTools = async () => {
-    const { data, error } = await supabase
-        .from("edr_product_tools")
-        .select()
-        .order("id");
+  const { data, error } = await supabase
+    .from("edr_product_tools")
+    .select()
+    .order("id");
 
-    if (error) console.log(error);
+  if (error) console.log(error);
 
-    return data;
+  return data;
 };
 
 export const getAllProductByCategory = async (category: string) => {
-    const { data, error } = await supabase
-        .from("Product")
-        .select()
-        .eq("category", category);
-    if (error) console.log(error);
+  const { data, error } = await supabase
+    .from("Product")
+    .select()
+    .eq("category", category);
+  if (error) console.log(error);
 
-    return data;
+  return data;
 };
 
 export const findProduct = async (name: string, dbName: string) => {
-    const { data } = await supabase
-        .from(dbName)
-        .select()
-        .eq("name", name)
-        .single();
+  const { data } = await supabase
+    .from(dbName)
+    .select()
+    .eq("name", name)
+    .single();
 
-    return data;
+  return data;
 };
 
 export const createProduct = async (product: Omit<Product, "id">) => {
-    // console.log(product);
+  // console.log(product);
 
-    const { data, error } = await supabase
-        .from(dbName[product.category])
-        .insert(product);
+  const { data, error } = await supabase
+    .from(dbName[product.category])
+    .insert(product);
 
-    if (error) console.log(error);
+  if (error) console.log(error);
 
-    return data;
+  return data;
 };
 
 export const editProduct = async (
-    id: number,
-    name: string,
-    catagory: string,
-    quantity: number
+  id: number,
+  name: string,
+  category: string,
+  image: string,
+  quantity: number
 ) => {
-    const result = await supabase
-        .from(dbName[catagory])
-        .upsert({ id: id, name: name, quantity: quantity });
+  const result = await supabase
+    .from(dbName[category])
+    .upsert({ id: id, name: name, image: image, quantity: quantity });
 };
