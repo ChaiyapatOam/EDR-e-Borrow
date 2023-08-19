@@ -19,8 +19,8 @@
         // console.log(transactionsComps);
     };
 
-    const onSubmit = () => {
-        SubmitReturn("4", arr);
+    const onSubmit = async() => {
+        await SubmitReturn(arr);
         navigate("/");
     };
 </script>

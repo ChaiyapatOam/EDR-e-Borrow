@@ -115,7 +115,7 @@ export async function getTransaction(phone: string) {
     return [resultTools.data, resultComp.data];
 }
 
-export async function SubmitReturn(edr_users_id: string, products: any[]) {
+export async function SubmitReturn(products: any[]) {
     await SubmitReturnTools(products.filter((item) => item.category == "EDRET"));
     await SubmitReturnComponents(
         products.filter((product) => product.category == "EDREC")
