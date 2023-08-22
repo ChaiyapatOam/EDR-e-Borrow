@@ -6,25 +6,39 @@ const supabaseKey = import.meta.env.VITE_PUBLIC_SUPABASE_KEY;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const Search = async (value: string) => {
-  const { data, error } = await supabase
-    .from("Product")
-    .select()
-    .eq("name", value);
-  if (error) console.log(error);
+    try {
+        const { data, error } = await supabase
+            .from("Product")
+            .select()
+            .eq("name", value);
 
-  return data;
+        if (error) {
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export async function UploadImage(file: File): Promise<string> {
-  let fileName = "product/" + nanoid();
-  const { error } = await supabase.storage
-    .from("images")
-    .upload(fileName, file);
-  if (error) console.log(error);
+    try {
+        let fileName = "product/" + nanoid();
+        const { error } = await supabase.storage
+            .from("images")
+            .upload(fileName, file);
 
-  const { data } = supabase.storage.from("images").getPublicUrl(fileName);
-  // console.log("URL=", data.publicUrl);
-  const url = data.publicUrl;
+        if (error) {
+            throw error;
+        }
 
-  return url;
+        const { data } = supabase.storage.from("images").getPublicUrl(fileName);
+        // console.log("URL=", data.publicUrl);
+        const url = data.publicUrl;
+
+        return url;
+    } catch (error) {
+        console.log(error);
+    }
 }

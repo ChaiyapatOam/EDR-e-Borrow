@@ -2,82 +2,123 @@ import type { Product } from "@/types/ProductType";
 import { supabase } from "../supabase";
 
 const dbName = {
-  EDREC: "edr_product_components",
-  EDRET: "edr_product_tools",
+    EDREC: "edr_product_components",
+    EDRET: "edr_product_tools",
 };
 
 export const getAllProduct = async () => {
-  // const { data, error } = await supabase.from("edr_all_product").select();
-  const components = await getAllComponents();
-  const tools = await getAllTools();
-  const data = components.concat(tools);
-  // console.log(data);
-
-  return data;
+    try {
+        const components = await getAllComponents();
+        const tools = await getAllTools();
+        const data = components.concat(tools);
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const getAllComponents = async () => {
-  const { data, error } = await supabase
-    .from("edr_product_components")
-    .select()
-    .order("id");
+    try {
+        const { data, error } = await supabase
+            .from("edr_product_components")
+            .select()
+            .order("id");
 
-  if (error) console.log(error);
+        if (error) {
+            throw error;
+        }
 
-  return data;
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const getAllTools = async () => {
-  const { data, error } = await supabase
-    .from("edr_product_tools")
-    .select()
-    .order("id");
+    try {
+        const { data, error } = await supabase
+            .from("edr_product_tools")
+            .select()
+            .order("id");
 
-  if (error) console.log(error);
+        if (error) {
+            throw error;
+        }
 
-  return data;
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const getAllProductByCategory = async (category: string) => {
-  const { data, error } = await supabase
-    .from("Product")
-    .select()
-    .eq("category", category);
-  if (error) console.log(error);
+    try {
+        const { data, error } = await supabase
+            .from("Product")
+            .select()
+            .eq("category", category);
 
-  return data;
+        if (error) {
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const findProduct = async (name: string, dbName: string) => {
-  const { data } = await supabase
-    .from(dbName)
-    .select()
-    .eq("name", name)
-    .single();
+    try {
+        const { data, error } = await supabase
+            .from(dbName)
+            .select()
+            .eq("name", name)
+            .single();
 
-  return data;
+        if (error) {
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const createProduct = async (product: Omit<Product, "id">) => {
-  // console.log(product);
+    try {
+        const { data, error } = await supabase
+            .from(dbName[product.category])
+            .insert(product);
 
-  const { data, error } = await supabase
-    .from(dbName[product.category])
-    .insert(product);
+        if (error) {
+            throw error;
+        }
 
-  if (error) console.log(error);
-
-  return data;
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const editProduct = async (
-  id: number,
-  name: string,
-  category: string,
-  image: string,
-  quantity: number
+    id: number,
+    name: string,
+    category: string,
+    image: string,
+    quantity: number
 ) => {
-  const result = await supabase
-    .from(dbName[category])
-    .upsert({ id: id, name: name, image: image, quantity: quantity });
+    try {
+        const result = await supabase
+            .from(dbName[category])
+            .upsert({ id: id, name: name, image: image, quantity: quantity });
+
+        if (result.error) {
+            throw result.error;
+        }
+    } catch (error) {
+        console.log(error);
+    }
 };
